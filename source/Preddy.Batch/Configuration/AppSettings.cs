@@ -85,6 +85,15 @@ namespace Preddy.Configuration {
             }
         }
 
+        /// <summary>
+        /// 除外ユーザーを取得します。
+        /// </summary>
+        public static string[] ExcludeUsers {
+            get {
+                return ConfigurationManager.AppSettings[nameof(ExcludeUsers)].Split(',');
+            }
+        }
+
     }
 
 }

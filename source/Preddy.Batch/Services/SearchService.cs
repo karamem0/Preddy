@@ -49,8 +49,10 @@ namespace Preddy.Services {
                 .Where(x => x.Count == searchCount)
                 .Where(x => x.MaxID == maxId.GetValueOrDefault())
                 .FirstOrDefault();
+            var excludeUsers = AppSettings.ExcludeUsers;
             return searchResult.Statuses
                 .Where(x => x.RetweetedStatus.StatusID == 0)
+                .Where(x => excludeUsers.Contains(x.User.ScreenNameResponse) != true)
                 .Select(x => new TweetLog() {
                     Id = Guid.NewGuid(),
                     StatusId = x.StatusID.ToString(),

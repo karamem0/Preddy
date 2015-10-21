@@ -2,6 +2,7 @@
 using Preddy.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
@@ -87,7 +88,11 @@ namespace Preddy.Services {
                     this.dbContext.Database.ExecuteSqlCommand(
                         " DELETE FROM [dbo].[TweetLog]" +
                         " WHERE [TweetedAt] < @TweetedAt ",
-                        new SqlParameter("@TweetedAt", tweetDate)
+                        new SqlParameter() {
+                            DbType = DbType.DateTime2,
+                            ParameterName = "@TweetedAt",
+                            Value = tweetDate,
+                        }
                     );
                 }
             }
