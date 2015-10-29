@@ -23,13 +23,16 @@
         * { font-family: "Meiryo", "Arial", sans-serif; font-weight: 400; }
         h1 { font-size: 32px; }
         h2 { font-size: 20px; }
-        h3 { font-size: 16px; margin: 0; }
         #chart { display: table-cell; text-align: center; vertical-align: middle; height: 400px; width: 1140px; }
         #tweet-item td { padding: 5px; vertical-align: top; }
         #tweet-item a { color: inherit; }
+        .twitter { margin: 12px 0; }
         .emoji { height: 1em; width: 1em; margin: 0 0.05em 0 0.1em; vertical-align: -0.1em; }
-        .tweet-item-header * { display: table-cell; padding: 0 3px 0 0; }
-        .tweet-item-header div { color: #777777; }
+        .list-group-item { vertical-align: top; }
+        .list-group-item > div { display: table-cell; vertical-align: top; }
+        .tweet-item-image { padding: 0 10px 0 0; }
+        .tweet-item-header { color: #777777; }
+        .tweet-item-header div { display: table-cell; padding: 0 3px 0 0; }
     </style>
 </head>
 <body>
@@ -37,6 +40,14 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="javascript:void(0)"><span class="glyphicon glyphicon-stats"></span></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="twitter">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://preddy.azurewebsites.net/" data-via="karamem0" data-lang="ja" style="display: none;">ツイート</a>
+                        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -57,23 +68,17 @@
                     <p><span data-bind="text: selectedDate"></span>のツイートを表示します。</p>
                     <ul class="list-group" data-bind="foreach: tweetArray">
                         <li class="list-group-item">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <div class="tweet-item-image">
-                                            <img data-bind="attr: { src: ProfileImageUrl, alt: UserName }" height="48" width="48">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="tweet-item-header">
-                                            <h3><a href="#" data-bind="text: UserName, attr: { href: UserUrl }"></a></h3>
-                                            <div><span data-bind="text: ScreenName"></span></div>
-                                            <div><a href="#" data-bind="text: TweetedAt, attr: { href: StatusUrl }"></a></div>
-                                        </div>
-                                        <div class="tweet-item-text"><span data-bind="html: Text"></span></div>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="tweet-item-image">
+                                <img data-bind="attr: { src: ProfileImageUrl, alt: UserName }" height="48" width="48">
+                            </div>
+                            <div class="tweet-item-content">
+                                <div class="tweet-item-header">
+                                    <div><a href="#" data-bind="text: UserName, attr: { href: UserUrl }"></a></div>
+                                    <div><span data-bind="text: ScreenName"></span></div>
+                                    <div><a href="#" data-bind="text: TweetedAt, attr: { href: StatusUrl }"></a></div>
+                                </div>
+                                <div class="tweet-item-text"><span data-bind="html: Text"></span></div>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -93,7 +98,7 @@
                 maxDate: null,
                 selectedDate: ko.observable(),
                 tweetExist: ko.observable(false),
-                tweetArray: ko.observableArray(),
+                tweetArray: ko.observableArray()
             };
             var nowDate = new Date();
             viewModel.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
@@ -141,7 +146,7 @@
                             }
                         });
                     },
-                    error: function () { },
+                    error: function () { }
                 });
             }
             function outputTweet() {
@@ -162,7 +167,7 @@
                         viewModel.tweetExist(false);
                         viewModel.tweetArray.removeAll();
                         $("#tweet-item").fadeIn();
-                    },
+                    }
                 });
                 window.location.href = window.location.pathname + "#" + encodeURIComponent(selectedDate);
             }
