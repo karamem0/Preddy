@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Preddy.ViewModels {
 
+    /// <summary>
+    /// ツイートのデータを表します。
+    /// </summary>
     [DataContract()]
     public class TweetViewModel {
 

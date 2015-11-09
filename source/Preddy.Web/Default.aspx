@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@karamem0">
-    <meta name="twitter:title" content="ドクターイエロー運行予測(beta)">
+    <meta name="twitter:title" content="ドクターイエロー運行予測 (beta)">
     <meta name="twitter:description" content="ドクターイエローに関するつぶやきから次の運行日を予測します。">
-    <title>ドクターイエロー運行予測(beta)</title>
+    <title>ドクターイエロー運行予測 (beta)</title>
     <link rel="stylesheet" href="/Content/bootstrap.min.css">
     <script type="text/javascript" src="/Scripts/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
@@ -32,14 +32,14 @@
         .list-group-item > div { display: table-cell; vertical-align: top; }
         .tweet-item-image { padding: 0 10px 0 0; }
         .tweet-item-header { color: #777777; }
-        .tweet-item-header div { display: table-cell; padding: 0 3px 0 0; }
+        .tweet-item-header div { display: inline-block; padding: 0 3px 0 0; }
     </style>
 </head>
 <body>
     <div class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="javascript:void(0)"><span class="glyphicon glyphicon-stats"></span></a>
+                <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-stats"></span></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -52,39 +52,49 @@
         </div>
     </div>
     <div class="container">
-        <h1>ドクターイエロー運行予測(beta)</h1>
+        <h1>ドクターイエロー運行予測 (beta)</h1>
         <p>ドクターイエローに関するつぶやきから次の運行日を予測します。</p>
-        <div id="tweet-trend">
-            <h2>ツイートの傾向</h2>
-            <p>過去1か月以内のツイートの合計を表示します。</p>
-            <div id="chart">
-                <img src="/Assets/loading.gif" />
+        <div class="row">
+            <div id="tweet-trend" class="col-md-12">
+                <h2>ツイートの傾向</h2>
+                <p>過去 1 か月以内のツイートの合計を表示します。</p>
+                <div id="chart">
+                    <img src="/Assets/loading.gif" />
+                </div>
             </div>
         </div>
-        <div id="tweet-detail">
-            <h2>ツイートの詳細</h2>
-            <div id="tweet-item">
-                <div data-bind="visible: tweetExist() == true">
-                    <p><span data-bind="text: selectedDate"></span>のツイートを表示します。</p>
-                    <ul class="list-group" data-bind="foreach: tweetArray">
-                        <li class="list-group-item">
-                            <div class="tweet-item-image">
-                                <img data-bind="attr: { src: ProfileImageUrl, alt: UserName }" height="48" width="48">
-                            </div>
-                            <div class="tweet-item-content">
-                                <div class="tweet-item-header">
-                                    <div><a href="#" data-bind="text: UserName, attr: { href: UserUrl }"></a></div>
-                                    <div><span data-bind="text: ScreenName"></span></div>
-                                    <div><a href="#" data-bind="text: TweetedAt, attr: { href: StatusUrl }"></a></div>
+        <div class="row">
+            <div id="tweet-detail" class="col-md-9">
+                <h2>ツイートの詳細</h2>
+                <div id="tweet-item">
+                    <div data-bind="visible: tweetExist() == true">
+                        <p><span data-bind="text: selectedDate"></span>のツイートを表示します。</p>
+                        <ul class="list-group" data-bind="foreach: tweetArray">
+                            <li class="list-group-item">
+                                <div class="tweet-item-image">
+                                    <img data-bind="attr: { src: ProfileImageUrl, alt: UserName }" height="48" width="48">
                                 </div>
-                                <div class="tweet-item-text"><span data-bind="html: Text"></span></div>
-                            </div>
-                        </li>
-                    </ul>
+                                <div class="tweet-item-content">
+                                    <div class="tweet-item-header">
+                                        <div><a href="#" data-bind="text: UserName, attr: { href: UserUrl }"></a></div>
+                                        <div><span data-bind="text: ScreenName"></span></div>
+                                        <div><a href="#" data-bind="text: TweetedAt, attr: { href: StatusUrl }"></a></div>
+                                    </div>
+                                    <div class="tweet-item-text"><span data-bind="html: Text"></span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div data-bind="visible: tweetExist() != true">
+                        <p>表示するデータはありません。グラフの点をクリックすると詳細が表示されます。</p>
+                    </div>
                 </div>
-                <div data-bind="visible: tweetExist() != true">
-                    <p>表示するデータはありません。グラフの点をクリックすると詳細が表示されます。</p>
-                </div>
+            </div>
+            <div id="description" class="col-md-3">
+                <h2>このサイトについて</h2>
+                <p><a href="https://ja.wikipedia.org/wiki/%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%82%A4%E3%82%A8%E3%83%AD%E3%83%BC">ドクターイエロー - Wikipedia</a></p>
+                <p>ドクターイエローの運行は 10 日に 1 回程度とされており、そのスケジュールは公開されていません。このサイトでは、Twitter からドクターイエローの目撃情報を集計し、これまでの運行実績から今後の運行予測を行います。</p>
+                <p>このサイトについてのお問い合わせは <a href="https://twitter.com/karamem0">@karamem0</a> までお願いします。</p>
             </div>
         </div>
     </div>
@@ -98,7 +108,7 @@
                 maxDate: null,
                 selectedDate: ko.observable(),
                 tweetExist: ko.observable(false),
-                tweetArray: ko.observableArray()
+                tweetArray: ko.observableArray(),
             };
             var nowDate = new Date();
             viewModel.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
@@ -146,7 +156,9 @@
                             }
                         });
                     },
-                    error: function () { }
+                    error: function () {
+                        $("#chart").html("問題が発生しました。ページを再読み込みしてください。");
+                    }
                 });
             }
             function outputTweet() {
@@ -161,6 +173,12 @@
                         viewModel.tweetArray.removeAll();
                         ko.utils.arrayPushAll(viewModel.tweetArray, json);
                         twemoji.parse(document.body);
+                        $(".tweet-item-text").each(function () {
+                            $(this).html(
+                                $(this).html().replace(
+                                /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
+                                '<a href="$1">$1</a>'));
+                        });
                         $("#tweet-item").fadeIn();
                     },
                     error: function () {
@@ -171,18 +189,22 @@
                 });
                 window.location.href = window.location.pathname + "#" + encodeURIComponent(selectedDate);
             }
-            google.load("visualization", "1", { packages: ["corechart"] });
-            google.setOnLoadCallback(function () {
-                dateFormatter = new google.visualization.DateFormat({ pattern: "yyyy/MM/dd" });
-                dataTable = new google.visualization.DataTable();
-                outputChart();
-                if (window.location.hash.length > 0) {
-                    var value = decodeURIComponent(window.location.hash.replace("#", ""));
-                    var date = dateFormatter.formatValue(new Date(value))
-                    viewModel.selectedDate(date);
-                    outputTweet();
-                }
-            });
+            try {
+                google.load("visualization", "1", { packages: ["corechart"] });
+                google.setOnLoadCallback(function () {
+                    dateFormatter = new google.visualization.DateFormat({ pattern: "yyyy/MM/dd" });
+                    dataTable = new google.visualization.DataTable();
+                    outputChart();
+                    if (window.location.hash.length > 0) {
+                        var value = decodeURIComponent(window.location.hash.replace("#", ""));
+                        var date = dateFormatter.formatValue(new Date(value))
+                        viewModel.selectedDate(date);
+                        outputTweet();
+                    }
+                });
+            } catch (ex) {
+                $("#chart").html("問題が発生しました。ページを再読み込みしてください。");
+            }
         })();
     </script>
 </body>

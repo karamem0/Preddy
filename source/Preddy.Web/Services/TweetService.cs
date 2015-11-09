@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Preddy.Services {
 
+    /// <summary>
+    /// ツイートのデータを操作するサービスを表します。
+    /// </summary>
     public class TweetService : IDisposable {
 
         /// <summary>

@@ -7,15 +7,27 @@ using System.Threading.Tasks;
 
 namespace Preddy.ViewModels {
 
+    /// <summary>
+    /// グラフのデータを表します。
+    /// </summary>
     [DataContract()]
     public class ChartViewModel {
 
+        /// <summary>
+        /// 開始日を取得または設定します。
+        /// </summary>
         [DataMember()]
         public virtual string MinDate { get; set; }
 
+        /// <summary>
+        /// 終了日を取得または設定します。
+        /// </summary>
         [DataMember()]
         public virtual string MaxDate { get; set; }
 
+        /// <summary>
+        /// 日付と件数のコレクションを取得または設定します。
+        /// </summary>
         [DataMember()]
         public virtual List<KeyValuePair<string, int>> Results { get; set; }
 

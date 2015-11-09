@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Preddy.Services {
 
     /// <summary>
-    /// ツイートの統計を操作するサービスを表します。
+    /// グラフのデータを操作するサービスを表します。
     /// </summary>
     public class ChartService : IDisposable {
 
