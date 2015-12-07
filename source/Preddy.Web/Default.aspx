@@ -122,7 +122,7 @@
                 $.ajax({
                     type: "GET",
                     url: encodeURI("/api/chart?maxdate=" + maxDate + "&" + "mindate=" + minDate),
-                    timeout: 5000,
+                    timeout: 10000,
                     success: function (json) {
                         viewModel.maxDate = new Date(json.MaxDate);
                         viewModel.minDate = new Date(json.MinDate);
@@ -167,7 +167,7 @@
                 $.ajax({
                     type: "GET",
                     url: encodeURI("/api/tweet?date=" + selectedDate),
-                    timeout: 5000,
+                    timeout: 10000,
                     success: function (json) {
                         viewModel.tweetExist(json.length > 0);
                         viewModel.tweetArray.removeAll();
