@@ -57,7 +57,7 @@
         <div class="row">
             <div id="tweet-trend" class="col-md-12">
                 <h2>ツイートの傾向</h2>
-                <p>過去 1 か月以内のツイートの合計を表示します。</p>
+                <p>過去 30 日以内のツイートの合計を表示します。</p>
                 <div id="chart">
                     <img src="/Assets/loading.gif" />
                 </div>
@@ -112,8 +112,7 @@
             };
             var nowDate = new Date();
             viewModel.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-            viewModel.minDate.setMonth(viewModel.minDate.getMonth() - 1);
-            viewModel.minDate.setDate(viewModel.minDate.getDate() + 1);
+            viewModel.minDate.setTime(viewModel.minDate.getTime() - (30 * 24 * 60 * 60 * 1000));
             viewModel.maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
             ko.applyBindings(viewModel);
             function outputChart() {
