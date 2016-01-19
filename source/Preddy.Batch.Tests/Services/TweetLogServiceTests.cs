@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Preddy.Services;
-using Preddy.Models;
+using Karemem0.Preddy.Services;
+using Karemem0.Preddy.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,10 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace Preddy.Services.Tests {
+namespace Karemem0.Preddy.Services.Tests {
 
     /// <summary>
-    /// <see cref="Preddy.Services.TweetLogService"/> クラスをテストします。
+    /// <see cref="Karemem0.Preddy.Services.TweetLogService"/> クラスをテストします。
     /// </summary>
     [TestClass()]
     public class TweetLogServiceTests {
@@ -48,7 +48,7 @@ namespace Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetLogService.GetMaxId"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetLogService.GetMaxId"/> メソッドをテストします。
         /// </summary>
 
         [TestMethod()]
@@ -60,7 +60,7 @@ namespace Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetLogService.AddOrUpdate"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetLogService.AddOrUpdate"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void AddOrUpdateTest1() {
@@ -75,7 +75,7 @@ namespace Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetLogService.AddOrUpdate"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetLogService.AddOrUpdate"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void AddOrUpdateTest2() {
@@ -90,7 +90,7 @@ namespace Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetLogService.GetCount"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetLogService.GetCount"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void GetCountTest1() {
@@ -100,7 +100,7 @@ namespace Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetLogService.Shrink"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetLogService.Shrink"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void ShrinkTest1() {

@@ -1,5 +1,5 @@
-﻿using Preddy.Configuration;
-using Preddy.Models;
+﻿using Karemem0.Preddy.Configuration;
+using Karemem0.Preddy.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preddy.Services {
+namespace Karemem0.Preddy.Services {
 
     /// <summary>
     /// ツイートのログを操作するサービスを表します。
@@ -22,7 +22,7 @@ namespace Preddy.Services {
         private DefaultConnectionContext dbContext;
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetLogService"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.Services.TweetLogService"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         public TweetLogService() {
             this.dbContext = new DefaultConnectionContext();
@@ -44,7 +44,7 @@ namespace Preddy.Services {
         /// <summary>
         /// 指定したツイートのログを追加または更新します。
         /// </summary>
-        /// <param name="newValue">追加または更新する <see cref="Preddy.Models.TweetLog"/>。</param>
+        /// <param name="newValue">追加または更新する <see cref="Karemem0.Preddy.Models.TweetLog"/>。</param>
         /// <returns>処理が正常に行われた場合は true。それ以外の場合は false。</returns>
         public bool AddOrUpdate(TweetLog newValue) {
             var oldValue = this.dbContext.TweetLogs.SingleOrDefault(x => x.StatusId == newValue.StatusId);

@@ -1,13 +1,13 @@
 ﻿using LinqToTwitter;
-using Preddy.Configuration;
-using Preddy.Models;
+using Karemem0.Preddy.Configuration;
+using Karemem0.Preddy.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preddy.Services {
+namespace Karemem0.Preddy.Services {
 
     /// <summary>
     /// Twitter API からツイートを検索するサービスを表します。
@@ -20,7 +20,7 @@ namespace Preddy.Services {
         private TwitterContext twitterContext;
 
         /// <summary>
-        /// <see cref="Preddy.Services.SearchService"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.Services.SearchService"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         public SearchService() {
             this.twitterContext = new TwitterContext(
@@ -38,7 +38,7 @@ namespace Preddy.Services {
         /// 指定したツイート ID を含む過去のツイートを検索します。
         /// </summary>
         /// <param name="maxId">ツイート ID を示す <see cref="System.UInt64"/>。</param>
-        /// <returns><see cref="Preddy.Models.TweetLog"/> の配列。</returns>
+        /// <returns><see cref="Karemem0.Preddy.Models.TweetLog"/> の配列。</returns>
         public TweetLog[] SearchByMaxId(ulong? maxId = null) {
             var searchQuery = Uri.EscapeUriString(AppSettings.SearchQuery);
             var searchCount = AppSettings.SearchCount.GetValueOrDefault();

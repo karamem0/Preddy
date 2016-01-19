@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preddy.Models {
+namespace Karemem0.Preddy.Models {
 
     /// <summary>
     /// ツイートの統計を格納します。
@@ -61,7 +61,7 @@ namespace Preddy.Models {
         public virtual DateTime UpdatedAt { get; set; }
 
         /// <summary>
-        /// <see cref="Preddy.Models.TweetSummary"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.Models.TweetSummary"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         public TweetSummary() { }
 

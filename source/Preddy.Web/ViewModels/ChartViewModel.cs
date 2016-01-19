@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preddy.ViewModels {
+namespace Karemem0.Preddy.ViewModels {
 
     /// <summary>
     /// グラフのデータを表します。
@@ -32,7 +32,7 @@ namespace Preddy.ViewModels {
         public virtual List<KeyValuePair<string, int>> Results { get; set; }
 
         /// <summary>
-        /// <see cref="Preddy.ViewModels.ChartViewModel"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.ViewModels.ChartViewModel"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         public ChartViewModel() { }
 

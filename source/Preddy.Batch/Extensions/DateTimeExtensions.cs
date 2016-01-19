@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preddy.Extensions {
+namespace Karemem0.Preddy.Extensions {
 
     /// <summary>
     /// <see cref="System.DateTime"/> クラスの拡張メソッドを定義します。

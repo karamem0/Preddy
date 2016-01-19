@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preddy.Configuration {
+namespace Karemem0.Preddy.Configuration {
 
     /// <summary>
     /// アプリケーションの設定情報を取得します。

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Http;
 
-namespace Preddy {
+namespace Karemem0.Preddy {
 
     /// <summary>
     /// アプリケーションの Web API の設定を構成します。

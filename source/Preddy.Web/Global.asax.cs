@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
 
-namespace Preddy {
+namespace Karemem0.Preddy {
 
     /// <summary>
     /// Web API アプリケーションを表します。

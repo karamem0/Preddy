@@ -1,5 +1,5 @@
-﻿using Preddy.Configuration;
-using Preddy.Services;
+﻿using Karemem0.Preddy.Configuration;
+using Karemem0.Preddy.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Preddy.Controllers {
+namespace Karemem0.Preddy.Controllers {
 
     /// <summary>
     /// バッチ処理を実行するコントローラーを表します。
@@ -15,7 +15,7 @@ namespace Preddy.Controllers {
     public class BatchController : IDisposable {
 
         /// <summary>
-        /// <see cref="Preddy.Controllers.BatchController"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.Controllers.BatchController"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         public BatchController() { }
 

@@ -1,12 +1,12 @@
-﻿using Preddy.Controllers;
-using Preddy.Services;
+﻿using Karemem0.Preddy.Controllers;
+using Karemem0.Preddy.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preddy {
+namespace Karemem0.Preddy {
 
     /// <summary>
     /// アプリケーションのエントリ ポイントを定義します。

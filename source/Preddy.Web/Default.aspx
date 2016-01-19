@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/Content/bootstrap.min.css">
     <script type="text/javascript" src="/Scripts/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/Scripts/knockout-3.3.0.js"></script>
+    <script type="text/javascript" src="/Scripts/knockout-3.4.0.js"></script>
     <script type="text/javascript" src="//www.google.com/jsapi"></script>
     <script type="text/javascript" src="//twemoji.maxcdn.com/twemoji.min.js"></script>
     <style type="text/css">

@@ -1,6 +1,6 @@
-﻿using Preddy.Extensions;
-using Preddy.Models;
-using Preddy.ViewModels;
+﻿using Karemem0.Preddy.Extensions;
+using Karemem0.Preddy.Models;
+using Karemem0.Preddy.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preddy.Services {
+namespace Karemem0.Preddy.Services {
 
     /// <summary>
     /// ツイートのデータを操作するサービスを表します。
@@ -21,7 +21,7 @@ namespace Preddy.Services {
         private DefaultConnectionContext dbContext;
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetService"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.Services.TweetService"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         public TweetService() {
             this.dbContext = new DefaultConnectionContext();

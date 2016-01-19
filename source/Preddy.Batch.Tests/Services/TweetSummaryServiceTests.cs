@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Preddy.Models;
-using Preddy.Services;
+using Karemem0.Preddy.Models;
+using Karemem0.Preddy.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preddy.Services.Tests {
+namespace Karemem0.Preddy.Services.Tests {
 
     /// <summary>
-    /// <see cref="Preddy.Services.TweetSummaryService"/> クラスをテストします。
+    /// <see cref="Karemem0.Preddy.Services.TweetSummaryService"/> クラスをテストします。
     /// </summary>
     [TestClass()]
     public class TweetSummaryServiceTests {
@@ -52,7 +52,7 @@ namespace Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetSummaryService.Summarize"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetSummaryService.Summarize"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void SummarizeTest1() {
@@ -64,7 +64,7 @@ namespace Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetSummaryService.AddOrUpdate"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetSummaryService.AddOrUpdate"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void AddOrUpdateTest1() {
@@ -79,7 +79,7 @@ namespace Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Preddy.Services.TweetSummaryService.AddOrUpdate"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetSummaryService.AddOrUpdate"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void AddOrUpdateTest2() {
