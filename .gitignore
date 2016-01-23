@@ -212,5 +212,5 @@ FakesAssemblies/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
-#*.[Dd]ebug.config
-#*.[Rr]elease.config
+*.[Dd]ebug.config
+*.[Rr]elease.config
