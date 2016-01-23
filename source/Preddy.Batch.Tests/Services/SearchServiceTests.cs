@@ -19,7 +19,7 @@ namespace Karemem0.Preddy.Services.Tests {
         /// <see cref="Karemem0.Preddy.Services.SearchService.SearchByMaxId"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
-        public void SearchByMaxIdTest() {
+        public void SearchByMaxIdTest1() {
             var target = new SearchService();
             var actual = target.SearchByMaxId();
             Assert.IsNotNull(actual);

@@ -91,11 +91,8 @@ namespace Karemem0.Preddy.Models {
             using (var stream = new MemoryStream())
             using (var writer = new StreamWriter(stream)) {
                 serializer.Serialize(writer, this);
-                writer.Flush();
-                stream.Position = 0;
-                using (var reader = new StreamReader(stream)) {
-                    return reader.ReadToEnd();
-                }
+                var buffer = stream.ToArray();
+                return Encoding.UTF8.GetString(buffer, 0, buffer.Length);
             }
         }
 
