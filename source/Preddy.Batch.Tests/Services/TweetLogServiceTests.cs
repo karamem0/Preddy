@@ -21,7 +21,7 @@ namespace Karemem0.Preddy.Services.Tests {
         /// <summary>
         /// テスト クラスを初期化します。
         /// </summary>
-        /// <param name="testContext"></param>
+        /// <param name="testContext"><see cref="Microsoft.VisualStudio.TestTools.UnitTesting.TestContext"/>。</param>
         [ClassInitialize()]
         public static void ClassInitialize(TestContext testContext) {
             AppDomain.CurrentDomain.SetData("DataDirectory", testContext.TestDeploymentDir);
@@ -50,7 +50,6 @@ namespace Karemem0.Preddy.Services.Tests {
         /// <summary>
         /// <see cref="Karemem0.Preddy.Services.TweetLogService.GetMaxId"/> メソッドをテストします。
         /// </summary>
-
         [TestMethod()]
         public void GetMaxIdTest1() {
             var target = new TweetLogService();
