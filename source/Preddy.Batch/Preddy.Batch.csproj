@@ -130,16 +130,6 @@
     <Compile Include="Services\TweetSummaryService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.Debug.config">
-      <DependentUpon>App.config</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App.Release.config">
-      <DependentUpon>App.config</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6 %28x86 および x64%29</ProductName>

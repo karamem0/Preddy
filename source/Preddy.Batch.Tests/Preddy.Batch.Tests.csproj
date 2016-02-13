@@ -123,16 +123,6 @@
     </None>
     <None Include="Packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="App.Debug.config">
-      <DependentUpon>App.config</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App.Release.config">
-      <DependentUpon>App.config</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
