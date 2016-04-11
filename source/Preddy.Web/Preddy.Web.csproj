@@ -91,26 +91,28 @@
   <ItemGroup>
     <Content Include="Assets\loading.gif" />
     <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Default.aspx" />
-    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Global.asax" />
-    <Content Include="Packages.config" />
+    <Content Include="Packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\jquery-2.2.2.js" />
+    <Content Include="Scripts\jquery-2.2.2.min.js" />
     <Content Include="Scripts\knockout-3.4.0.debug.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
     <Content Include="Web.config">
@@ -144,7 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\preddy.pubxml" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.2.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

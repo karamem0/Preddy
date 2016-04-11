@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="ドクターイエローに関するつぶやきから次の運行日を予測します。">
     <title>ドクターイエロー運行予測 (beta)</title>
     <link rel="stylesheet" href="/Content/bootstrap.min.css">
-    <script type="text/javascript" src="/Scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-2.2.2.min.js"></script>
     <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="/Scripts/knockout-3.4.0.js"></script>
     <script type="text/javascript" src="//www.google.com/jsapi"></script>
@@ -121,7 +121,7 @@
                 $.ajax({
                     type: "GET",
                     url: encodeURI("/api/chart?maxdate=" + maxDate + "&" + "mindate=" + minDate),
-                    timeout: 10000,
+                    timeout: 0,
                     success: function (json) {
                         viewModel.maxDate = new Date(json.MaxDate);
                         viewModel.minDate = new Date(json.MinDate);
@@ -166,7 +166,7 @@
                 $.ajax({
                     type: "GET",
                     url: encodeURI("/api/tweet?date=" + selectedDate),
-                    timeout: 10000,
+                    timeout: 0,
                     success: function (json) {
                         viewModel.tweetExist(json.length > 0);
                         viewModel.tweetArray.removeAll();
