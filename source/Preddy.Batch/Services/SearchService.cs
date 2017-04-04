@@ -1,4 +1,4 @@
-﻿using LinqToTwitter;
+﻿using CoreTweet;
 using Karemem0.Preddy.Configuration;
 using Karemem0.Preddy.Models;
 using System;
@@ -15,53 +15,51 @@ namespace Karemem0.Preddy.Services {
     public class SearchService : IDisposable {
 
         /// <summary>
-        /// Twitter API のコンテキストを表します。
+        /// Twitter トークンを表します。
         /// </summary>
-        private TwitterContext twitterContext;
+        private Tokens twitterToken;
 
         /// <summary>
         /// <see cref="Karemem0.Preddy.Services.SearchService"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         public SearchService() {
-            this.twitterContext = new TwitterContext(
-                new SingleUserAuthorizer() {
-                    CredentialStore = new SingleUserInMemoryCredentialStore() {
-                        ConsumerKey = AppSettings.ConsumerKey,
-                        ConsumerSecret = AppSettings.ConsumerSecret,
-                        AccessToken = AppSettings.AccessToken,
-                        AccessTokenSecret = AppSettings.AccessTokenSecret
-                    }
-                });
+            this.twitterToken = Tokens.Create(
+                AppSettings.ConsumerKey,
+                AppSettings.ConsumerSecret,
+                AppSettings.AccessToken,
+                AppSettings.AccessTokenSecret
+            );
         }
 
         /// <summary>
         /// 指定したツイート ID を含む過去のツイートを検索します。
         /// </summary>
-        /// <param name="maxId">ツイート ID を示す <see cref="System.UInt64"/>。</param>
+        /// <param name="maxId">ツイート ID を示す <see cref="System.Int64"/>。</param>
         /// <returns><see cref="Karemem0.Preddy.Models.TweetLog"/> の配列。</returns>
-        public TweetLog[] SearchByMaxId(ulong? maxId = null) {
+        public TweetLog[] SearchByMaxId(long? maxId = null) {
             var searchQuery = Uri.EscapeUriString(AppSettings.SearchQuery);
             var searchCount = AppSettings.SearchCount.GetValueOrDefault();
-            var searchResult = twitterContext.Search
-                .Where(x => x.Type == SearchType.Search)
-                .Where(x => x.ResultType == ResultType.Recent)
-                .Where(x => x.Query == searchQuery)
-                .Where(x => x.Count == searchCount)
-                .Where(x => x.MaxID == maxId.GetValueOrDefault())
-                .FirstOrDefault();
             var excludeUsers = AppSettings.ExcludeUsers;
-            return searchResult.Statuses
-                .Where(x => x.RetweetedStatus.StatusID == 0)
-                .Where(x => excludeUsers.Contains(x.User.ScreenNameResponse) != true)
-                .Select(x => new TweetLog() {
+            return this.twitterToken.Search.Tweets(
+                q: searchQuery,
+                result_type: "recent",
+                count: searchCount,
+                max_id: maxId.GetValueOrDefault())
+                .Where(tweet => tweet.IsRetweeted != true)
+                .Where(tweet => excludeUsers.Contains(tweet.User.ScreenName) != true)
+                .Select(tweet => new TweetLog() {
                     Id = Guid.NewGuid(),
-                    StatusId = x.StatusID.ToString(),
-                    UserId = x.User.UserIDResponse.ToString(),
-                    UserName = x.User.Name,
-                    ScreenName = x.User.ScreenNameResponse,
-                    ProfileImageUrl = x.User.ProfileImageUrlHttps,
-                    Text = x.Text,
-                    TweetedAt = x.CreatedAt,
+                    StatusId = tweet.Id.ToString(),
+                    UserId = tweet.User.Id.ToString(),
+                    UserName = tweet.User.Name,
+                    ScreenName = tweet.User.ScreenName,
+                    ProfileImageUrl = tweet.User.ProfileImageUrlHttps,
+                    MediaUrl = tweet.Entities.Media?
+                        .Where(media => media.Type == "photo")
+                        .Select(media => media.MediaUrlHttps)
+                        .FirstOrDefault(),
+                    Text = tweet.Text,
+                    TweetedAt = tweet.CreatedAt.UtcDateTime,
                 })
                 .OrderByDescending(x => x.TweetedAt)
                 .ToArray();
@@ -70,11 +68,7 @@ namespace Karemem0.Preddy.Services {
         /// <summary>
         /// 現在のインスタンスで使用されているリソースを解放します。
         /// </summary>
-        public void Dispose() {
-            if (this.twitterContext != null) {
-                this.twitterContext.Dispose();
-            }
-        }
+        public void Dispose() { }
 
     }
 

@@ -54,6 +54,12 @@ namespace Karemem0.Preddy.Models {
         public virtual string ProfileImageUrl { get; set; }
 
         /// <summary>
+        /// メディアの URL を取得または設定します。
+        /// </summary>
+        [StringLength(1024)]
+        public virtual string MediaUrl { get; set; }
+
+        /// <summary>
         /// 本文を取得または設定します。
         /// </summary>
         [StringLength(200)]

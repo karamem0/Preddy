@@ -55,7 +55,7 @@ namespace Karemem0.Preddy.Services.Tests {
             var target = new TweetLogService();
             var actual = target.GetMaxId();
             Debug.WriteLine(actual);
-            Assert.AreEqual(actual, (ulong)3);
+            Assert.AreEqual(actual, (long)3);
         }
 
         /// <summary>

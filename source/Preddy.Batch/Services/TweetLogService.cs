@@ -31,11 +31,11 @@ namespace Karemem0.Preddy.Services {
         /// <summary>
         /// ツイート ID の最大値を返します。
         /// </summary>
-        /// <returns>最大値を示す <see cref="System.UInt64"/>。</returns>
-        public ulong? GetMaxId() {
-            var numValue = default(ulong);
+        /// <returns>最大値を示す <see cref="System.Int64"/>。</returns>
+        public long? GetMaxId() {
+            var numValue = default(long);
             var strValue = this.dbContext.TweetLogs.Max(x => x.StatusId);
-            if (ulong.TryParse(strValue, out numValue) == true) {
+            if (long.TryParse(strValue, out numValue) == true) {
                 return numValue;
             }
             return null;

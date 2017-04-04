@@ -25,7 +25,7 @@ namespace Karemem0.Preddy.Controllers {
         public void InsertTweetLog() {
             using (var searchService = new SearchService())
             using (var tweetLogService = new TweetLogService()) {
-                var maxId = default(ulong);
+                var maxId = default(long);
                 var sinceId = tweetLogService.GetMaxId().GetValueOrDefault();
                 while (sinceId == 0 || maxId == 0 || maxId >= sinceId) {
                     var tweetLogs = searchService.SearchByMaxId(maxId);
@@ -35,7 +35,7 @@ namespace Karemem0.Preddy.Controllers {
                     foreach (var tweetLog in tweetLogs) {
                         tweetLogService.AddOrUpdate(tweetLog);
                     }
-                    maxId = ulong.Parse(tweetLogs.Min(x => x.StatusId));
+                    maxId = long.Parse(tweetLogs.Min(x => x.StatusId));
                 }
             }
         }
