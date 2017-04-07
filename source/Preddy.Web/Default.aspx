@@ -13,10 +13,10 @@
     <meta name="twitter:title" content="ドクターイエロー運行予測 (beta)">
     <meta name="twitter:description" content="ドクターイエローに関するつぶやきから次の運行日を予測します。">
     <title>ドクターイエロー運行予測 (beta)</title>
-    <link rel="stylesheet" href="/Content/bootstrap.min.css">
-    <script type="text/javascript" src="/Scripts/jquery-2.2.2.min.js"></script>
-    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/Scripts/knockout-3.4.0.js"></script>
+    <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
     <script type="text/javascript" src="//www.google.com/jsapi"></script>
     <script type="text/javascript" src="//twemoji.maxcdn.com/twemoji.min.js"></script>
     <style type="text/css">
