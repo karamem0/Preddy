@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 namespace Karemem0.Preddy.Services.Tests {
 
     /// <summary>
-    /// <see cref="Karemem0.Preddy.Services.SearchService"/> クラスをテストします。
+    /// <see cref="Karemem0.Preddy.Services.TwitterService"/> クラスをテストします。
     /// </summary>
     [TestClass()]
-    public class SearchServiceTests {
+    public class TwitterServiceTests {
 
         /// <summary>
-        /// <see cref="Karemem0.Preddy.Services.SearchService.SearchByMaxId"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TwitterService.Search"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
-        public void SearchByMaxIdTest1() {
-            var target = new SearchService();
-            var actual = target.SearchByMaxId();
+        public void SearchTest1() {
+            var target = new TwitterService();
+            var actual = target.Search();
             Assert.IsNotNull(actual);
             foreach (var item in actual) {
                 Debug.WriteLine(item);

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Karemem0.Preddy.Services {
 
     /// <summary>
-    /// ツイートの統計を操作するサービスを表します。
+    /// ツイートの実績を操作するサービスを表します。
     /// </summary>
-    public class TweetSummaryService : IDisposable {
+    public class TweetResultService : IDisposable {
 
         /// <summary>
         /// データベース コンテキストを表します。
@@ -21,15 +21,15 @@ namespace Karemem0.Preddy.Services {
         /// <summary>
         /// <see cref="Karemem0.Preddy.Services.TweetLogService"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        public TweetSummaryService() {
+        public TweetResultService() {
             this.dbContext = new DefaultConnectionContext();
         }
 
         /// <summary>
-        /// ツイートのログから統計を作成します。
+        /// ツイートのログから実績を作成します。
         /// </summary>
         /// <returns><see cref="System.Collections.Generic.IEnumerable{T}"/>。</returns>
-        public IEnumerable<TweetSummary> Summarize() {
+        public IEnumerable<TweetResult> Summarize() {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
             var minDate = this.dbContext.TweetLogs.Min(x => x.TweetedAt).ToLocalTime(timeZone).Date;
             var maxDate = this.dbContext.TweetLogs.Max(x => x.TweetedAt).ToLocalTime(timeZone).Date;
@@ -40,7 +40,7 @@ namespace Karemem0.Preddy.Services {
                     .Where(x => x.TweetedAt >= minTweeted)
                     .Where(x => x.TweetedAt < maxTweeted)
                     .Count();
-                yield return new TweetSummary() {
+                yield return new TweetResult() {
                     Id = Guid.NewGuid(),
                     Date = date,
                     Year = date.Year,
@@ -56,12 +56,12 @@ namespace Karemem0.Preddy.Services {
         /// </summary>
         /// <param name="newValue">追加または更新する <see cref="Karemem0.Preddy.Models.TweetLog"/>。</param>
         /// <returns>処理が正常に行われた場合は true。それ以外の場合は false。</returns>
-        public bool AddOrUpdate(TweetSummary newValue) {
-            var oldValue = this.dbContext.TweetSummaries.SingleOrDefault(x => x.Date == newValue.Date);
+        public bool AddOrUpdate(TweetResult newValue) {
+            var oldValue = this.dbContext.TweetResults.SingleOrDefault(x => x.Date == newValue.Date);
             if (oldValue == null) {
                 newValue.CreatedAt = DateTime.UtcNow;
                 newValue.UpdatedAt = DateTime.UtcNow;
-                this.dbContext.TweetSummaries.Add(newValue);
+                this.dbContext.TweetResults.Add(newValue);
             } else {
                 oldValue.Year = newValue.Year;
                 oldValue.Month = newValue.Month;

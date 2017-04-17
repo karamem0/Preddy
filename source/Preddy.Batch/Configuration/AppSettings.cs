@@ -15,59 +15,86 @@ namespace Karemem0.Preddy.Configuration {
         /// <summary>
         /// コンシューマー キーを取得します。
         /// </summary>
-        public static string ConsumerKey {
+        public static string TwitterConsumerKey {
             get {
-                return ConfigurationManager.AppSettings[nameof(ConsumerKey)];
+                return ConfigurationManager.AppSettings[nameof(TwitterConsumerKey)];
             }
         }
 
         /// <summary>
         /// コンシューマー シークレットを取得します。
         /// </summary>
-        public static string ConsumerSecret {
+        public static string TwitterConsumerSecret {
             get {
-                return ConfigurationManager.AppSettings[nameof(ConsumerSecret)];
+                return ConfigurationManager.AppSettings[nameof(TwitterConsumerSecret)];
             }
         }
 
         /// <summary>
         /// アクセス トークンを取得します。
         /// </summary>
-        public static string AccessToken {
+        public static string TwitterAccessToken {
             get {
-                return ConfigurationManager.AppSettings[nameof(AccessToken)];
+                return ConfigurationManager.AppSettings[nameof(TwitterAccessToken)];
             }
         }
 
         /// <summary>
         /// アクセス トークン シークレットを取得します。
         /// </summary>
-        public static string AccessTokenSecret {
+        public static string TwitterAccessTokenSecret {
             get {
-                return ConfigurationManager.AppSettings[nameof(AccessTokenSecret)];
+                return ConfigurationManager.AppSettings[nameof(TwitterAccessTokenSecret)];
             }
         }
 
         /// <summary>
         /// 検索クエリを取得します。
         /// </summary>
-        public static string SearchQuery {
+        public static string TwitterSearchQuery {
             get {
-                return ConfigurationManager.AppSettings[nameof(SearchQuery)];
+                return ConfigurationManager.AppSettings[nameof(TwitterSearchQuery)];
             }
         }
 
         /// <summary>
         /// 検索件数を取得します。
         /// </summary>
-        public static int? SearchCount {
+        public static int? TwitterSearchCount {
             get {
                 var numValue = default(int);
-                var strValue = ConfigurationManager.AppSettings[nameof(SearchCount)];
+                var strValue = ConfigurationManager.AppSettings[nameof(TwitterSearchCount)];
                 if (int.TryParse(strValue, out numValue) == true) {
                     return numValue;
                 }
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// 除外ユーザーを取得します。
+        /// </summary>
+        public static string[] TwitterExcludeUsers {
+            get {
+                return ConfigurationManager.AppSettings[nameof(TwitterExcludeUsers)].Split(',');
+            }
+        }
+
+        /// <summary>
+        /// Azure ML の API キーを取得します。
+        /// </summary>
+        public static string AzureMachineLearningApiKey {
+            get {
+                return ConfigurationManager.AppSettings[nameof(AzureMachineLearningApiKey)];
+            }
+        }
+
+        /// <summary>
+        /// Azure ML の要求 URL を取得します。
+        /// </summary>
+        public static string AzureMachineLearningRequestUrl {
+            get {
+                return ConfigurationManager.AppSettings[nameof(AzureMachineLearningRequestUrl)];
             }
         }
 
@@ -82,15 +109,6 @@ namespace Karemem0.Preddy.Configuration {
                     return numValue;
                 }
                 return null;
-            }
-        }
-
-        /// <summary>
-        /// 除外ユーザーを取得します。
-        /// </summary>
-        public static string[] ExcludeUsers {
-            get {
-                return ConfigurationManager.AppSettings[nameof(ExcludeUsers)].Split(',');
             }
         }
 

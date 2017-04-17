@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace Karemem0.Preddy.Models {
 
     /// <summary>
-    /// ツイートの統計を格納します。
+    /// ツイートの実績を格納します。
     /// </summary>
-    [Table(nameof(TweetSummary))]
-    public class TweetSummary {
+    [Table(nameof(TweetResult))]
+    public class TweetResult {
 
         /// <summary>
         /// ID を取得または設定します。
@@ -61,22 +61,16 @@ namespace Karemem0.Preddy.Models {
         public virtual DateTime UpdatedAt { get; set; }
 
         /// <summary>
-        /// <see cref="Karemem0.Preddy.Models.TweetSummary"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.Models.TweetResult"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        public TweetSummary() { }
+        public TweetResult() { }
 
         /// <summary>
         /// 現在のインスタンスの文字列表現を返します。
         /// </summary>
         /// <returns>現在のインスタンスの文字列表現を示す <see cref="System.String"/>。</returns>
         public override string ToString() {
-            var serializer = new JsonSerializer();
-            using (var stream = new MemoryStream())
-            using (var writer = new StreamWriter(stream)) {
-                serializer.Serialize(writer, this);
-                var buffer = stream.ToArray();
-                return Encoding.UTF8.GetString(buffer, 0, buffer.Length);
-            }
+            return JsonConvert.SerializeObject(this);
         }
 
     }

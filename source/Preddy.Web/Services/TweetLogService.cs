@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 namespace Karemem0.Preddy.Services {
 
     /// <summary>
-    /// ツイートのデータを操作するサービスを表します。
+    /// ツイートのログを操作するサービスを表します。
     /// </summary>
-    public class TweetService : IDisposable {
+    public class TweetLogService : IDisposable {
 
         /// <summary>
         /// データベース コンテキストを表します。
@@ -21,13 +21,18 @@ namespace Karemem0.Preddy.Services {
         private DefaultConnectionContext dbContext;
 
         /// <summary>
-        /// <see cref="Karemem0.Preddy.Services.TweetService"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.Services.TweetLogService"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        public TweetService() {
+        public TweetLogService() {
             this.dbContext = new DefaultConnectionContext();
         }
 
-        public IEnumerable<TweetViewModel> Search(DateTime date) {
+        /// <summary>
+        /// 指定した日付のツイートを検索します。
+        /// </summary>
+        /// <param name="date">日付を示す <see cref="System.DateTime"/>。</param>
+        /// <returns><see cref="Karemem0.Preddy.ViewModels.TweetLogViewModel"/> のコレクション。</returns>
+        public IEnumerable<TweetLogViewModel> Search(DateTime date) {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
             var cultureInfo = CultureInfo.GetCultureInfo("ja-JP");
             var minDate = date.ToUniversalTime(timeZone);
@@ -37,16 +42,17 @@ namespace Karemem0.Preddy.Services {
                 .Where(x => x.TweetedAt < maxDate)
                 .OrderBy(x => x.TweetedAt)
                 .ToList()
-                .Select(x => new TweetViewModel() {
+                .Select(x => new TweetLogViewModel() {
                     StatusId = x.StatusId,
                     UserId = x.UserId,
                     UserName = x.UserName,
                     ScreenName = "@" + x.ScreenName,
-                    ProfileImageUrl = x.ProfileImageUrl,
                     Text = x.Text.Replace("\n", "<br>"),
+                    ProfileImageUrl = x.ProfileImageUrl,
                     TweetedAt = x.TweetedAt.ToLocalTime(timeZone).ToString(cultureInfo.DateTimeFormat),
                     StatusUrl = string.Format("https://twitter.com/{0}/status/{1}", x.ScreenName, x.StatusId),
                     UserUrl = string.Format("https://twitter.com/{0}", x.ScreenName),
+                    MediaUrl = x.MediaUrl,
                 });
         }
 

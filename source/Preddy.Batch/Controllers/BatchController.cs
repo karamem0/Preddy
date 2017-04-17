@@ -23,12 +23,12 @@ namespace Karemem0.Preddy.Controllers {
         /// 新しいツイートのログを取得してデータベースに保存します。
         /// </summary>
         public void InsertTweetLog() {
-            using (var searchService = new SearchService())
+            using (var twitterService = new TwitterService())
             using (var tweetLogService = new TweetLogService()) {
                 var maxId = default(long);
                 var sinceId = tweetLogService.GetMaxId().GetValueOrDefault();
                 while (sinceId == 0 || maxId == 0 || maxId >= sinceId) {
-                    var tweetLogs = searchService.SearchByMaxId(maxId);
+                    var tweetLogs = twitterService.Search(maxId);
                     if (tweetLogs.Length <= 1) {
                         break;
                     }
@@ -44,9 +44,21 @@ namespace Karemem0.Preddy.Controllers {
         /// 新しいツイートの統計を取得してデータベースに保存します。
         /// </summary>
         public void InsertTweetSummary() {
-            using (var tweetSummaryService = new TweetSummaryService()) {
+            using (var tweetSummaryService = new TweetResultService()) {
                 foreach (var tweetSummary in tweetSummaryService.Summarize()) {
                     tweetSummaryService.AddOrUpdate(tweetSummary);
+                }
+            }
+        }
+
+        /// <summary>
+        /// ツイートの予測を取得してデータベースに保存します。
+        /// </summary>
+        public void InsertTweetForecast() {
+            using (var azuremlService = new AzureMachineLearningService())
+            using (var tweetForecastService = new TweetForecastService()) {
+                foreach (var tweetForecast in azuremlService.Search()) {
+                    tweetForecastService.AddOrUpdate(tweetForecast);
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace Karemem0.Preddy.Services {
     /// <summary>
     /// Twitter API からツイートを検索するサービスを表します。
     /// </summary>
-    public class SearchService : IDisposable {
+    public class TwitterService : IDisposable {
 
         /// <summary>
         /// Twitter トークンを表します。
@@ -20,14 +20,14 @@ namespace Karemem0.Preddy.Services {
         private Tokens twitterToken;
 
         /// <summary>
-        /// <see cref="Karemem0.Preddy.Services.SearchService"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.Services.TwitterService"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        public SearchService() {
+        public TwitterService() {
             this.twitterToken = Tokens.Create(
-                AppSettings.ConsumerKey,
-                AppSettings.ConsumerSecret,
-                AppSettings.AccessToken,
-                AppSettings.AccessTokenSecret
+                AppSettings.TwitterConsumerKey,
+                AppSettings.TwitterConsumerSecret,
+                AppSettings.TwitterAccessToken,
+                AppSettings.TwitterAccessTokenSecret
             );
         }
 
@@ -36,15 +36,15 @@ namespace Karemem0.Preddy.Services {
         /// </summary>
         /// <param name="maxId">ツイート ID を示す <see cref="System.Int64"/>。</param>
         /// <returns><see cref="Karemem0.Preddy.Models.TweetLog"/> の配列。</returns>
-        public TweetLog[] SearchByMaxId(long? maxId = null) {
-            var searchQuery = Uri.EscapeUriString(AppSettings.SearchQuery);
-            var searchCount = AppSettings.SearchCount.GetValueOrDefault();
-            var excludeUsers = AppSettings.ExcludeUsers;
+        public TweetLog[] Search(long? maxId = null) {
+            var searchQuery = Uri.EscapeUriString(AppSettings.TwitterSearchQuery);
+            var searchCount = AppSettings.TwitterSearchCount.GetValueOrDefault();
+            var excludeUsers = AppSettings.TwitterExcludeUsers;
             return this.twitterToken.Search.Tweets(
-                q: searchQuery,
-                result_type: "recent",
-                count: searchCount,
-                max_id: maxId.GetValueOrDefault())
+                    q: searchQuery,
+                    result_type: "recent",
+                    count: searchCount,
+                    max_id: maxId.GetValueOrDefault())
                 .Where(tweet => tweet.IsRetweeted != true)
                 .Where(tweet => excludeUsers.Contains(tweet.User.ScreenName) != true)
                 .Select(tweet => new TweetLog() {

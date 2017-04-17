@@ -34,6 +34,19 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\loading.gif" />
@@ -105,26 +117,43 @@
     <Compile Include="..\Preddy.Batch\Models\DefaultConnectionContext.cs">
       <Link>Models\DefaultConnectionContext.cs</Link>
     </Compile>
+    <Compile Include="..\Preddy.Batch\Models\TweetForecast.cs">
+      <Link>Models\TweetForecast.cs</Link>
+    </Compile>
     <Compile Include="..\Preddy.Batch\Models\TweetLog.cs">
       <Link>Models\TweetLog.cs</Link>
     </Compile>
-    <Compile Include="..\Preddy.Batch\Models\TweetSummary.cs">
-      <Link>Models\TweetSummary.cs</Link>
+    <Compile Include="..\Preddy.Batch\Models\TweetResult.cs">
+      <Link>Models\TweetResult.cs</Link>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ChartController.cs" />
-    <Compile Include="Controllers\TweetController.cs" />
+    <Compile Include="Controllers\TweetForecastController.cs" />
+    <Compile Include="Controllers\TweetResultController.cs" />
+    <Compile Include="Controllers\TweetLogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ChartService.cs" />
-    <Compile Include="Services\TweetService.cs" />
-    <Compile Include="ViewModels\ChartViewModel.cs" />
-    <Compile Include="ViewModels\TweetViewModel.cs" />
+    <Compile Include="Services\TweetForecastService.cs" />
+    <Compile Include="Services\TweetResultService.cs" />
+    <Compile Include="Services\TweetLogService.cs" />
+    <Compile Include="ViewModels\TweetForecastItemViewModel.cs" />
+    <Compile Include="ViewModels\TweetForecastViewModel.cs" />
+    <Compile Include="ViewModels\TweetResultItemViewModel.cs" />
+    <Compile Include="ViewModels\TweetResultViewModel.cs" />
+    <Compile Include="ViewModels\TweetLogViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\preddy.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\app.ts" />
+    <TypeScriptCompile Include="Scripts\typings\bootstrap\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\google.visualization\google.visualization.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\knockout\tests\jasmine.extensions.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\twemoji\twemoji.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -152,6 +181,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\Packages\Microsoft.Web.WebJobs.Publish.1.0.13\tools\webjobs.targets" Condition="Exists('..\Packages\Microsoft.Web.WebJobs.Publish.1.0.13\tools\webjobs.targets')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>

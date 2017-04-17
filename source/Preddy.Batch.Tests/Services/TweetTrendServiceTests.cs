@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 namespace Karemem0.Preddy.Services.Tests {
 
     /// <summary>
-    /// <see cref="Karemem0.Preddy.Services.TweetSummaryService"/> クラスをテストします。
+    /// <see cref="Karemem0.Preddy.Services.TweetResultService"/> クラスをテストします。
     /// </summary>
     [TestClass()]
-    public class TweetSummaryServiceTests {
+    public class TweetTrendServiceTests {
 
         /// <summary>
         /// テスト クラスを初期化します。
@@ -32,10 +32,10 @@ namespace Karemem0.Preddy.Services.Tests {
                     new TweetLog() { Id = Guid.NewGuid(), StatusId = "2", TweetedAt = new DateTime(2015, 1, 1, 10, 0, 0), },
                     new TweetLog() { Id = Guid.NewGuid(), StatusId = "3", TweetedAt = new DateTime(2015, 1, 2, 19, 0, 0), },
                 });
-                dbContext.TweetSummaries.AddOrUpdate(new[] {
-                    new TweetSummary() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 1), },
-                    new TweetSummary() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 2), },
-                    new TweetSummary() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 3), },
+                dbContext.TweetResults.AddOrUpdate(new[] {
+                    new TweetResult() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 1), },
+                    new TweetResult() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 2), },
+                    new TweetResult() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 3), },
                 });
                 dbContext.SaveChanges();
             }
@@ -52,11 +52,11 @@ namespace Karemem0.Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Karemem0.Preddy.Services.TweetSummaryService.Summarize"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetResultService.Summarize"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void SummarizeTest1() {
-            var target = new TweetSummaryService();
+            var target = new TweetResultService();
             var actual = target.Summarize();
             foreach (var item in actual) {
                 Debug.WriteLine(item);
@@ -64,30 +64,30 @@ namespace Karemem0.Preddy.Services.Tests {
         }
 
         /// <summary>
-        /// <see cref="Karemem0.Preddy.Services.TweetSummaryService.AddOrUpdate"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetResultService.AddOrUpdate"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void AddOrUpdateTest1() {
-            var target = new TweetSummaryService();
-            var actual = target.AddOrUpdate(new TweetSummary() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 4), });
+            var target = new TweetResultService();
+            var actual = target.AddOrUpdate(new TweetResult() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 4), });
             Assert.AreEqual(actual, true);
             using (var dbContext = new DefaultConnectionContext()) {
-                foreach (var item in dbContext.TweetSummaries) {
+                foreach (var item in dbContext.TweetResults) {
                     Debug.WriteLine(item);
                 }
             }
         }
 
         /// <summary>
-        /// <see cref="Karemem0.Preddy.Services.TweetSummaryService.AddOrUpdate"/> メソッドをテストします。
+        /// <see cref="Karemem0.Preddy.Services.TweetResultService.AddOrUpdate"/> メソッドをテストします。
         /// </summary>
         [TestMethod()]
         public void AddOrUpdateTest2() {
-            var target = new TweetSummaryService();
-            var actual = target.AddOrUpdate(new TweetSummary() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 3) });
+            var target = new TweetResultService();
+            var actual = target.AddOrUpdate(new TweetResult() { Id = Guid.NewGuid(), Date = new DateTime(2015, 1, 3) });
             Assert.AreEqual(actual, true);
             using (var dbContext = new DefaultConnectionContext()) {
-                foreach (var item in dbContext.TweetSummaries) {
+                foreach (var item in dbContext.TweetResults) {
                     Debug.WriteLine(item);
                 }
             }

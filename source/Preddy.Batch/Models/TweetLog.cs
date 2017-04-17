@@ -93,13 +93,7 @@ namespace Karemem0.Preddy.Models {
         /// </summary>
         /// <returns>現在のインスタンスの文字列表現を示す <see cref="System.String"/>。</returns>
         public override string ToString() {
-            var serializer = new JsonSerializer();
-            using (var stream = new MemoryStream())
-            using (var writer = new StreamWriter(stream)) {
-                serializer.Serialize(writer, this);
-                var buffer = stream.ToArray();
-                return Encoding.UTF8.GetString(buffer, 0, buffer.Length);
-            }
+            return JsonConvert.SerializeObject(this);
         }
 
     }

@@ -18,9 +18,14 @@ namespace Karemem0.Preddy.Models {
         public virtual DbSet<TweetLog> TweetLogs { get; set; }
 
         /// <summary>
-        /// <see cref="Karemem0.Preddy.Models.TweetSummary"/> クラスのコレクションを取得します。
+        /// <see cref="Karemem0.Preddy.Models.TweetResult"/> クラスのコレクションを取得します。
         /// </summary>
-        public virtual DbSet<TweetSummary> TweetSummaries { get; set; }
+        public virtual DbSet<TweetResult> TweetResults { get; set; }
+
+        /// <summary>
+        /// <see cref="Karemem0.Preddy.Models.TweetForecast"/> クラスのコレクションを取得します。
+        /// </summary>
+        public virtual DbSet<TweetForecast> TweetForecasts { get; set; }
 
         /// <summary>
         /// <see cref="Karemem0.Preddy.Models.DefaultConnectionContext"/> クラスの新しいインスタンスを初期化します。

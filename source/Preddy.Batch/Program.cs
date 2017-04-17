@@ -22,6 +22,7 @@ namespace Karemem0.Preddy {
                 controller.InsertTweetLog();
                 controller.InsertTweetSummary();
                 controller.DeleteTweetLog();
+                controller.InsertTweetForecast();
             }
         }
 

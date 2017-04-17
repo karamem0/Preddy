@@ -20,6 +20,21 @@ namespace Karemem0.Preddy {
         public static void Register(HttpConfiguration config) {
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
+                "GetTweetForecast",
+                "api/forecast",
+                new { Controller = "TweetForecast", Action = "GetTweetForecast" }
+            );
+            config.Routes.MapHttpRoute(
+                "GetTweetLog",
+                "api/log",
+                new { Controller = "TweetLog", Action = "GetTweetLog" }
+            );
+            config.Routes.MapHttpRoute(
+                "GetTweetResult",
+                "api/result",
+                new { Controller = "TweetResult", Action = "GetTweetResult" }
+            );
+            config.Routes.MapHttpRoute(
                 "DefaultApi",
                 "api/{Controller}/{Id}",
                 new { Id = RouteParameter.Optional }
