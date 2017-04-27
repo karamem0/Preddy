@@ -49,12 +49,9 @@ var Chart = (function () {
                     hAxis: {
                         format: 'M/d',
                         gridlines: { count: json.items.length },
-                        slantedText: true,
+                        slantedText: true
                     },
-                    vAxis: {
-                        maxValue: 50,
-                        minValue: 0
-                    }
+                    vAxis: {}
                 };
                 _this.maxDate = new Date(json.maxDate);
                 _this.minDate = new Date(json.minDate);
@@ -82,7 +79,7 @@ var TweetForecast = (function (_super) {
         _this.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
         _this.minDate.setTime(_this.minDate.getTime() + (24 * 60 * 60 * 1000));
         _this.maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        _this.maxDate.setTime(_this.maxDate.getTime() + (24 * 60 * 60 * 1000) * 31);
+        _this.maxDate.setTime(_this.maxDate.getTime() + (24 * 60 * 60 * 1000) * 30);
         _this.requestUrl = '/api/forecast';
         return _this;
     }
@@ -152,9 +149,8 @@ google.setOnLoadCallback(function () {
     ko.applyBindings({
         tweetLog: tweetLog,
         tweetForecast: tweetForecast,
-        tweetResult: tweetResult,
+        tweetResult: tweetResult
     });
     tweetForecast.draw();
     tweetResult.draw();
 });
-//# sourceMappingURL=app.js.map

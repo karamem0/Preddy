@@ -64,10 +64,7 @@ class Chart {
                         gridlines: { count: json.items.length },
                         slantedText: true,
                     },
-                    vAxis: {
-                        maxValue: 50,
-                        minValue: 0
-                    }
+                    vAxis: { }
                 };
                 this.maxDate = new Date(json.maxDate);
                 this.minDate = new Date(json.minDate);
@@ -96,7 +93,7 @@ class TweetForecast extends Chart {
         this.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
         this.minDate.setTime(this.minDate.getTime() + (24 * 60 * 60 * 1000));
         this.maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        this.maxDate.setTime(this.maxDate.getTime() + (24 * 60 * 60 * 1000) * 31);
+        this.maxDate.setTime(this.maxDate.getTime() + (24 * 60 * 60 * 1000) * 30);
         this.requestUrl = '/api/forecast';
     }
 

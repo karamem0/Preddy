@@ -77,32 +77,34 @@
             </div>
         </div>
         <div class="row">
-            <div id="tweet-log" class="col-md-9">
+            <div class="col-md-9">
                 <h2>ツイートの詳細</h2>
-                <div id="tweet-item" data-bind="with: tweetLog">
-                    <div data-bind="if: itemExists()">
-                        <p><span data-bind="text: selectedDate"></span>のツイートを表示します。</p>
-                        <ul class="list-group" data-bind="foreach: itemArray">
-                            <li class="list-group-item">
-                                <div class="tweet-item-profile-image">
-                                    <img data-bind="attr: { src: profileImageUrl, alt: userName }">
-                                </div>
-                                <div class="tweet-item-content">
-                                    <div class="tweet-item-header">
-                                        <div><a href="#" data-bind="text: userName, attr: { href: userUrl }"></a></div>
-                                        <div><span data-bind="text: screenName"></span></div>
-                                        <div><a href="#" data-bind="text: tweetedAt, attr: { href: statusUrl }"></a></div>
+                <div id="tweet-log">
+                    <div id="tweet-item" data-bind="with: tweetLog">
+                        <div data-bind="if: itemExists()">
+                            <p><span data-bind="text: selectedDate"></span>のツイートを表示します。</p>
+                            <ul class="list-group" data-bind="foreach: itemArray">
+                                <li class="list-group-item">
+                                    <div class="tweet-item-profile-image">
+                                        <img data-bind="attr: { src: profileImageUrl, alt: userName }">
                                     </div>
-                                    <div class="tweet-item-text"><span data-bind="html: text"></span></div>
-                                    <div class="tweet-item-media-image" data-bind="visible: mediaUrl != null">
-                                        <img data-bind="attr: { src: mediaUrl, alt: userName }">
+                                    <div class="tweet-item-content">
+                                        <div class="tweet-item-header">
+                                            <div><a href="#" data-bind="text: userName, attr: { href: userUrl }"></a></div>
+                                            <div><span data-bind="text: screenName"></span></div>
+                                            <div><a href="#" data-bind="text: tweetedAt, attr: { href: statusUrl }"></a></div>
+                                        </div>
+                                        <div class="tweet-item-text"><span data-bind="html: text"></span></div>
+                                        <div class="tweet-item-media-image" data-bind="visible: mediaUrl != null">
+                                            <img data-bind="attr: { src: mediaUrl, alt: userName }">
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div data-bind="ifnot: itemExists()">
-                        <p>表示するデータはありません。グラフの点をクリックすると詳細が表示されます。</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div data-bind="ifnot: itemExists()">
+                            <p>表示するデータはありません。グラフの点をクリックすると詳細が表示されます。</p>
+                        </div>
                     </div>
                 </div>
             </div>

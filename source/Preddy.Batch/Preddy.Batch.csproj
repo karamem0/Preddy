@@ -112,10 +112,6 @@
     <None Include="Packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\PublishProfiles\preddy.pubxml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\webjob-publish-settings.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AppSettings.cs" />
