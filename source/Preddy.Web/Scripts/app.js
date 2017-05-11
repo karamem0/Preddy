@@ -91,7 +91,7 @@ var TweetResult = (function (_super) {
         var _this = _super.call(this, 'chart-result') || this;
         var nowDate = new Date();
         _this.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        _this.minDate.setTime(_this.minDate.getTime() - (24 * 60 * 60 * 1000) * 30);
+        _this.minDate.setTime(_this.minDate.getTime() - (24 * 60 * 60 * 1000) * 29);
         _this.maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
         _this.requestUrl = '/api/result';
         return _this;

@@ -105,7 +105,7 @@ class TweetResult extends Chart {
         super('chart-result');
         var nowDate: Date = new Date();
         this.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        this.minDate.setTime(this.minDate.getTime() - (24 * 60 * 60 * 1000) * 30);
+        this.minDate.setTime(this.minDate.getTime() - (24 * 60 * 60 * 1000) * 29);
         this.maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
         this.requestUrl = '/api/result';
     }
