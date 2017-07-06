@@ -45,7 +45,7 @@ namespace Karemem0.Preddy.Services {
                     result_type: "recent",
                     count: searchCount,
                     max_id: maxId.GetValueOrDefault())
-                .Where(tweet => tweet.IsRetweeted != true)
+                .Where(tweet => tweet.RetweetedStatus == null)
                 .Where(tweet => excludeUsers.Contains(tweet.User.ScreenName) != true)
                 .Select(tweet => new TweetLog() {
                     Id = Guid.NewGuid(),
