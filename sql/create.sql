@@ -67,6 +67,12 @@ CREATE UNIQUE INDEX [IX_TweetLog_StatusId] ON [dbo].[TweetLog]
 )
 GO
 
+CREATE INDEX [IX_TweetLog_TweetedAt] ON [dbo].[TweetLog]
+(
+	[TweetedAt] ASC
+)
+GO
+
 CREATE UNIQUE INDEX [IX_TweetResult_Date] ON [dbo].[TweetResult]
 (
 	[Date] ASC
