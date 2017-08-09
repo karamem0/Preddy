@@ -30,7 +30,7 @@ namespace Karemem0.Preddy.Services {
         /// <param name="newValue">追加または更新する <see cref="Karemem0.Preddy.Models.TweetForecast"/>。</param>
         /// <returns>処理が正常に行われた場合は true。それ以外の場合は false。</returns>
         public bool AddOrUpdate(TweetForecast newValue) {
-            var oldValue = this.dbContext.TweetForecasts.SingleOrDefault(x => x.Date == newValue.Date);
+            var oldValue = this.dbContext.TweetForecasts.SingleOrDefault(item => item.Date == newValue.Date);
             if (oldValue == null) {
                 newValue.CreatedAt = DateTime.UtcNow;
                 newValue.UpdatedAt = DateTime.UtcNow;

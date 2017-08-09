@@ -31,14 +31,14 @@ namespace Karemem0.Preddy.Services {
         /// <returns><see cref="System.Collections.Generic.IEnumerable{T}"/>。</returns>
         public IEnumerable<TweetResult> Summarize() {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
-            var minDate = this.dbContext.TweetLogs.Min(x => x.TweetedAt).ToLocalTime(timeZone).Date;
-            var maxDate = this.dbContext.TweetLogs.Max(x => x.TweetedAt).ToLocalTime(timeZone).Date;
+            var minDate = this.dbContext.TweetLogs.Min(item => item.TweetedAt).ToLocalTime(timeZone).Date;
+            var maxDate = this.dbContext.TweetLogs.Max(item => item.TweetedAt).ToLocalTime(timeZone).Date;
             for (var date = minDate; date <= maxDate; date = date.AddDays(1)) {
                 var minTweeted = date.ToUniversalTime(timeZone);
                 var maxTweeted = date.AddDays(1).ToUniversalTime(timeZone);
                 var tweetCount = this.dbContext.TweetLogs
-                    .Where(x => x.TweetedAt >= minTweeted)
-                    .Where(x => x.TweetedAt < maxTweeted)
+                    .Where(item => item.TweetedAt >= minTweeted)
+                    .Where(item => item.TweetedAt < maxTweeted)
                     .Count();
                 yield return new TweetResult() {
                     Id = Guid.NewGuid(),
@@ -57,7 +57,7 @@ namespace Karemem0.Preddy.Services {
         /// <param name="newValue">追加または更新する <see cref="Karemem0.Preddy.Models.TweetLog"/>。</param>
         /// <returns>処理が正常に行われた場合は true。それ以外の場合は false。</returns>
         public bool AddOrUpdate(TweetResult newValue) {
-            var oldValue = this.dbContext.TweetResults.SingleOrDefault(x => x.Date == newValue.Date);
+            var oldValue = this.dbContext.TweetResults.SingleOrDefault(item => item.Date == newValue.Date);
             if (oldValue == null) {
                 newValue.CreatedAt = DateTime.UtcNow;
                 newValue.UpdatedAt = DateTime.UtcNow;

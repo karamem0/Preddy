@@ -127,21 +127,17 @@
       <Link>Models\TweetResult.cs</Link>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\TweetForecastController.cs" />
-    <Compile Include="Controllers\TweetResultController.cs" />
+    <Compile Include="Controllers\TweetSummaryController.cs" />
     <Compile Include="Controllers\TweetLogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\TweetForecastService.cs" />
-    <Compile Include="Services\TweetResultService.cs" />
+    <Compile Include="Services\TweetSummaryService.cs" />
     <Compile Include="Services\TweetLogService.cs" />
-    <Compile Include="ViewModels\TweetForecastItemViewModel.cs" />
-    <Compile Include="ViewModels\TweetForecastViewModel.cs" />
-    <Compile Include="ViewModels\TweetResultItemViewModel.cs" />
-    <Compile Include="ViewModels\TweetResultViewModel.cs" />
     <Compile Include="ViewModels\TweetLogViewModel.cs" />
+    <Compile Include="ViewModels\TweetSummaryItemViewModel.cs" />
+    <Compile Include="ViewModels\TweetSummaryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\app.ts" />
@@ -151,6 +147,9 @@
     <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\tests\jasmine.extensions.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\twemoji\twemoji.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\preddy - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

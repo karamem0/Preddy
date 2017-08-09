@@ -1,6 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Karemem0.Preddy.Models;
-using Karemem0.Preddy.Services;
+﻿using Karemem0.Preddy.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -15,7 +14,7 @@ namespace Karemem0.Preddy.Services.Tests {
     /// <see cref="Karemem0.Preddy.Services.TweetResultService"/> クラスをテストします。
     /// </summary>
     [TestClass()]
-    public class TweetTrendServiceTests {
+    public class TweetResultServiceTests {
 
         /// <summary>
         /// テスト クラスを初期化します。

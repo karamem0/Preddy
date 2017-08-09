@@ -34,7 +34,7 @@ namespace Karemem0.Preddy.Services {
         /// <returns>最大値を示す <see cref="System.Int64"/>。</returns>
         public long? GetMaxId() {
             var numValue = default(long);
-            var strValue = this.dbContext.TweetLogs.Max(x => x.StatusId);
+            var strValue = this.dbContext.TweetLogs.Max(item => item.StatusId);
             if (long.TryParse(strValue, out numValue) == true) {
                 return numValue;
             }
@@ -47,7 +47,7 @@ namespace Karemem0.Preddy.Services {
         /// <param name="newValue">追加または更新する <see cref="Karemem0.Preddy.Models.TweetLog"/>。</param>
         /// <returns>処理が正常に行われた場合は true。それ以外の場合は false。</returns>
         public bool AddOrUpdate(TweetLog newValue) {
-            var oldValue = this.dbContext.TweetLogs.SingleOrDefault(x => x.StatusId == newValue.StatusId);
+            var oldValue = this.dbContext.TweetLogs.SingleOrDefault(item => item.StatusId == newValue.StatusId);
             if (oldValue == null) {
                 newValue.CreatedAt = DateTime.UtcNow;
                 newValue.UpdatedAt = DateTime.UtcNow;
@@ -79,7 +79,7 @@ namespace Karemem0.Preddy.Services {
             var logMaxCount = AppSettings.LogMaxCount;
             if (logMaxCount != null) {
                 var tweetLog = this.dbContext.TweetLogs
-                    .OrderBy(x => x.TweetedAt)
+                    .OrderBy(item => item.TweetedAt)
                     .Skip(logMaxCount.Value)
                     .FirstOrDefault();
                 if (tweetLog != null) {

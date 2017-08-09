@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Karemem0.Preddy.ViewModels {
 
     /// <summary>
-    /// ツイートの予測を表します。
+    /// ツイートの実績を表します。
     /// </summary>
     [DataContract()]
-    public class TweetForecastViewModel {
+    public class TweetSummaryViewModel {
 
         /// <summary>
         /// 開始日を取得または設定します。
@@ -28,12 +29,12 @@ namespace Karemem0.Preddy.ViewModels {
         /// 日付と件数のコレクションを取得または設定します。
         /// </summary>
         [DataMember(Name = "items")]
-        public virtual List<TweetForecastItemViewModel> Items { get; set; }
+        public virtual List<TweetSummaryItemViewModel> Items { get; set; }
 
         /// <summary>
-        /// <see cref="Karemem0.Preddy.ViewModels.TweetForecastViewModel"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="Karemem0.Preddy.ViewModels.TweetSummaryViewModel"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        public TweetForecastViewModel() { }
+        public TweetSummaryViewModel() { }
 
     }
 

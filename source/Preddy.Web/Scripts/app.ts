@@ -70,10 +70,12 @@ class Chart {
                 this.minDate = new Date(json.minDate);
                 this.dataTable.addRows(json.items.length);
                 this.dataTable.addColumn('date', '日付');
-                this.dataTable.addColumn('number', '件数');
+                this.dataTable.addColumn('number', '予測');
+                this.dataTable.addColumn('number', '実績');
                 jQuery.each(json.items, (index, element) => {
                     this.dataTable.setValue(index, 0, new Date(element.date));
-                    this.dataTable.setValue(index, 1, element.count);
+                    this.dataTable.setValue(index, 1, element.forecast);
+                    this.dataTable.setValue(index, 2, element.result);
                 });
                 this.chart.draw(this.dataTable, option);
             },
@@ -85,29 +87,16 @@ class Chart {
 
 }
 
-class TweetForecast extends Chart {
+class TweetChart extends Chart {
 
     public constructor() {
-        super('chart-forecast');
-        var nowDate: Date = new Date();
-        this.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        this.minDate.setTime(this.minDate.getTime() + (24 * 60 * 60 * 1000));
-        this.maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        this.maxDate.setTime(this.maxDate.getTime() + (24 * 60 * 60 * 1000) * 30);
-        this.requestUrl = '/api/forecast';
-    }
-
-}
-
-class TweetResult extends Chart {
-
-    public constructor() {
-        super('chart-result');
+        super('tweet-chart');
         var nowDate: Date = new Date();
         this.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
         this.minDate.setTime(this.minDate.getTime() - (24 * 60 * 60 * 1000) * 29);
         this.maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        this.requestUrl = '/api/result';
+        this.maxDate.setTime(this.maxDate.getTime() + (24 * 60 * 60 * 1000) * 30);
+        this.requestUrl = '/api/summary';
     }
 
 }
@@ -167,14 +156,11 @@ class TweetLog implements ISelectedDateChanged {
 google.load('visualization', '1', { packages: ['corechart'] });
 google.setOnLoadCallback(() => {
     var tweetLog: TweetLog = new TweetLog();
-    var tweetForecast: TweetForecast = new TweetForecast();
-    var tweetResult: TweetResult = new TweetResult();
-    tweetResult.selectedDateChanged = tweetLog;
+    var tweetChart: TweetChart = new TweetChart();
+    tweetChart.selectedDateChanged = tweetLog;
     ko.applyBindings({
         tweetLog: tweetLog,
-        tweetForecast: tweetForecast,
-        tweetResult: tweetResult,
+        tweetChart: tweetChart,
     });
-    tweetForecast.draw();
-    tweetResult.draw();
+    tweetChart.draw();
 });

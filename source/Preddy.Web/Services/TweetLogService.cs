@@ -38,21 +38,21 @@ namespace Karemem0.Preddy.Services {
             var minDate = date.ToUniversalTime(timeZone);
             var maxDate = date.AddDays(1).ToUniversalTime(timeZone);
             return this.dbContext.TweetLogs
-                .Where(x => x.TweetedAt >= minDate)
-                .Where(x => x.TweetedAt < maxDate)
-                .OrderBy(x => x.TweetedAt)
+                .Where(item => item.TweetedAt >= minDate)
+                .Where(item => item.TweetedAt < maxDate)
+                .OrderBy(item => item.TweetedAt)
                 .ToList()
-                .Select(x => new TweetLogViewModel() {
-                    StatusId = x.StatusId,
-                    UserId = x.UserId,
-                    UserName = x.UserName,
-                    ScreenName = "@" + x.ScreenName,
-                    Text = x.Text.Replace("\n", "<br>"),
-                    ProfileImageUrl = x.ProfileImageUrl,
-                    TweetedAt = x.TweetedAt.ToLocalTime(timeZone).ToString(cultureInfo.DateTimeFormat),
-                    StatusUrl = string.Format("https://twitter.com/{0}/status/{1}", x.ScreenName, x.StatusId),
-                    UserUrl = string.Format("https://twitter.com/{0}", x.ScreenName),
-                    MediaUrl = x.MediaUrl,
+                .Select(item => new TweetLogViewModel() {
+                    StatusId = item.StatusId,
+                    UserId = item.UserId,
+                    UserName = item.UserName,
+                    ScreenName = "@" + item.ScreenName,
+                    Text = item.Text.Replace("\n", "<br>"),
+                    ProfileImageUrl = item.ProfileImageUrl,
+                    TweetedAt = item.TweetedAt.ToLocalTime(timeZone).ToString(cultureInfo.DateTimeFormat),
+                    StatusUrl = string.Format("https://twitter.com/{0}/status/{1}", item.ScreenName, item.StatusId),
+                    UserUrl = string.Format("https://twitter.com/{0}", item.ScreenName),
+                    MediaUrl = item.MediaUrl,
                 });
         }
 

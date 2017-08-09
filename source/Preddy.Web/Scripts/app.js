@@ -4,11 +4,16 @@
 /// <reference path="../Scripts/typings/google.visualization/google.visualization.d.ts" />
 /// <reference path="../Scripts/typings/twemoji/twemoji.d.ts" />
 'use strict';
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var Chart = (function () {
     function Chart(elementId) {
         var _this = this;
@@ -57,10 +62,12 @@ var Chart = (function () {
                 _this.minDate = new Date(json.minDate);
                 _this.dataTable.addRows(json.items.length);
                 _this.dataTable.addColumn('date', '日付');
-                _this.dataTable.addColumn('number', '件数');
+                _this.dataTable.addColumn('number', '予測');
+                _this.dataTable.addColumn('number', '実績');
                 jQuery.each(json.items, function (index, element) {
                     _this.dataTable.setValue(index, 0, new Date(element.date));
-                    _this.dataTable.setValue(index, 1, element.count);
+                    _this.dataTable.setValue(index, 1, element.forecast);
+                    _this.dataTable.setValue(index, 2, element.result);
                 });
                 _this.chart.draw(_this.dataTable, option);
             },
@@ -71,32 +78,19 @@ var Chart = (function () {
     };
     return Chart;
 }());
-var TweetForecast = (function (_super) {
-    __extends(TweetForecast, _super);
-    function TweetForecast() {
-        var _this = _super.call(this, 'chart-forecast') || this;
-        var nowDate = new Date();
-        _this.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        _this.minDate.setTime(_this.minDate.getTime() + (24 * 60 * 60 * 1000));
-        _this.maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        _this.maxDate.setTime(_this.maxDate.getTime() + (24 * 60 * 60 * 1000) * 30);
-        _this.requestUrl = '/api/forecast';
-        return _this;
-    }
-    return TweetForecast;
-}(Chart));
-var TweetResult = (function (_super) {
-    __extends(TweetResult, _super);
-    function TweetResult() {
-        var _this = _super.call(this, 'chart-result') || this;
+var TweetChart = (function (_super) {
+    __extends(TweetChart, _super);
+    function TweetChart() {
+        var _this = _super.call(this, 'tweet-chart') || this;
         var nowDate = new Date();
         _this.minDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
         _this.minDate.setTime(_this.minDate.getTime() - (24 * 60 * 60 * 1000) * 29);
         _this.maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-        _this.requestUrl = '/api/result';
+        _this.maxDate.setTime(_this.maxDate.getTime() + (24 * 60 * 60 * 1000) * 30);
+        _this.requestUrl = '/api/summary';
         return _this;
     }
-    return TweetResult;
+    return TweetChart;
 }(Chart));
 var TweetLog = (function () {
     function TweetLog() {
@@ -143,14 +137,11 @@ var TweetLog = (function () {
 google.load('visualization', '1', { packages: ['corechart'] });
 google.setOnLoadCallback(function () {
     var tweetLog = new TweetLog();
-    var tweetForecast = new TweetForecast();
-    var tweetResult = new TweetResult();
-    tweetResult.selectedDateChanged = tweetLog;
+    var tweetChart = new TweetChart();
+    tweetChart.selectedDateChanged = tweetLog;
     ko.applyBindings({
         tweetLog: tweetLog,
-        tweetForecast: tweetForecast,
-        tweetResult: tweetResult
+        tweetChart: tweetChart
     });
-    tweetForecast.draw();
-    tweetResult.draw();
+    tweetChart.draw();
 });

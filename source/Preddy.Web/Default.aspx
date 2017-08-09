@@ -59,19 +59,10 @@
         <h1>ドクターイエロー運行予測</h1>
         <p>ドクターイエローに関するつぶやきから次の運行日を予測します。</p>
         <div class="row">
-            <div id="tweet-forecast" class="col-md-12">
-                <h2>ツイートの予測</h2>
-                <p>今後 30 日のツイートの予測を表示します。</p>
-                <div id="chart-forecast" class="chart">
-                    <img src="/Assets/loading.gif" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div id="tweet-result" class="col-md-12">
-                <h2>ツイートの実績</h2>
-                <p>過去 30 日のツイートの実績を表示します。</p>
-                <div id="chart-result" class="chart">
+            <div id="tweet-summary" class="col-md-12">
+                <h2>ツイートの予測と実績</h2>
+                <p>前後 30 日のツイートの予測と実績を表示します。</p>
+                <div id="tweet-chart" class="chart">
                     <img src="/Assets/loading.gif" />
                 </div>
             </div>
@@ -117,6 +108,9 @@
         </div>
     </div>
     <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create','UA-57343126-2','auto');
+    ga('send','pageview');
     </script>
 </body>
 </html>

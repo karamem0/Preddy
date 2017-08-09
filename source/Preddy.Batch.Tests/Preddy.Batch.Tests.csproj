@@ -111,7 +111,7 @@
     <Compile Include="Services\TweetForecastServiceTest.cs" />
     <Compile Include="Services\TwitterServiceTests.cs" />
     <Compile Include="Services\TweetLogServiceTests.cs" />
-    <Compile Include="Services\TweetTrendServiceTests.cs" />
+    <Compile Include="Services\TweetResultServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

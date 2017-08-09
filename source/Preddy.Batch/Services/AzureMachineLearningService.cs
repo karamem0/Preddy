@@ -46,17 +46,17 @@ namespace Karemem0.Preddy.Services {
             var responseString = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var responseJson = (JObject)JsonConvert.DeserializeObject(responseString);
             return responseJson["Results"]["output1"]
-                .Select(x => new {
-                    Date = (DateTime)x["date"],
-                    Mean = (double)x["mean"]
+                .Select(item => new {
+                    Date = (DateTime)item["date"],
+                    Mean = (double)item["mean"]
                 })
-                .Select(x => new TweetForecast() {
+                .Select(item => new TweetForecast() {
                     Id = Guid.NewGuid(),
-                    Date = x.Date,
-                    Year = x.Date.Year,
-                    Month = x.Date.Month,
-                    Day = x.Date.Day,
-                    Count = x.Mean,
+                    Date = item.Date,
+                    Year = item.Date.Year,
+                    Month = item.Date.Month,
+                    Day = item.Date.Day,
+                    Count = item.Mean,
                 })
                 .ToArray();
         }
