@@ -54,7 +54,7 @@ var Chart = (function () {
                     hAxis: {
                         format: 'M/d',
                         gridlines: { count: json.items.length },
-                        slantedText: true
+                        slantedText: true,
                     },
                     vAxis: {}
                 };
@@ -63,7 +63,7 @@ var Chart = (function () {
                 _this.dataTable.addRows(json.items.length);
                 _this.dataTable.addColumn('date', '日付');
                 _this.dataTable.addColumn('number', '予測');
-                _this.dataTable.addColumn('number', '実績');
+                _this.dataTable.addColumn('number', '結果');
                 jQuery.each(json.items, function (index, element) {
                     _this.dataTable.setValue(index, 0, new Date(element.date));
                     _this.dataTable.setValue(index, 1, element.forecast);
@@ -141,7 +141,8 @@ google.setOnLoadCallback(function () {
     tweetChart.selectedDateChanged = tweetLog;
     ko.applyBindings({
         tweetLog: tweetLog,
-        tweetChart: tweetChart
+        tweetChart: tweetChart,
     });
     tweetChart.draw();
 });
+//# sourceMappingURL=app.js.map

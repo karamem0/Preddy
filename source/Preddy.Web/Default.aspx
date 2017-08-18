@@ -40,28 +40,23 @@
     </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-stats"></span></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-11">
+                <h1>ドクターイエロー運行予測</h1>
+                <p>ドクターイエローに関するつぶやきから次の運行日を予測します。</p>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="twitter">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://preddy.azurewebsites.net/" data-via="karamem0" data-lang="ja" style="display: none;">ツイート</a>
-                        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
-                    </li>
-                </ul>
+            <div class="col-md-1">
+                <div class="twitter">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://preddy.azurewebsites.net/" data-via="karamem0" data-lang="ja" style="display: none;">ツイート</a>
+                    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <h1>ドクターイエロー運行予測</h1>
-        <p>ドクターイエローに関するつぶやきから次の運行日を予測します。</p>
         <div class="row">
             <div id="tweet-summary" class="col-md-12">
-                <h2>ツイートの予測と実績</h2>
-                <p>前後 30 日のツイートの予測と実績を表示します。</p>
+                <h2>ツイートの予測と結果</h2>
+                <p>前後 30 日のツイートの予測と結果を表示します。</p>
                 <div id="tweet-chart" class="chart">
                     <img src="/Assets/loading.gif" />
                 </div>
