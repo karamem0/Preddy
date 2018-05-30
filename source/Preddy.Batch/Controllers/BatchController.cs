@@ -23,20 +23,24 @@ namespace Karemem0.Preddy.Controllers {
         /// 新しいツイートのログを取得してデータベースに保存します。
         /// </summary>
         public void InsertTweetLog() {
-            using (var twitterService = new TwitterService())
-            using (var tweetLogService = new TweetLogService()) {
-                var maxId = default(long);
-                var sinceId = tweetLogService.GetMaxId().GetValueOrDefault();
-                while (sinceId == 0 || maxId == 0 || maxId >= sinceId) {
-                    var tweetLogs = twitterService.Search(maxId);
-                    if (tweetLogs.Length <= 1) {
-                        break;
+            try {
+                using (var twitterService = new TwitterService())
+                using (var tweetLogService = new TweetLogService()) {
+                    var maxId = default(long);
+                    var sinceId = tweetLogService.GetMaxId().GetValueOrDefault();
+                    while (sinceId == 0 || maxId == 0 || maxId >= sinceId) {
+                        var tweetLogs = twitterService.Search(maxId);
+                        if (tweetLogs.Length <= 1) {
+                            break;
+                        }
+                        foreach (var tweetLog in tweetLogs) {
+                            tweetLogService.AddOrUpdate(tweetLog);
+                        }
+                        maxId = long.Parse(tweetLogs.Min(x => x.StatusId));
                     }
-                    foreach (var tweetLog in tweetLogs) {
-                        tweetLogService.AddOrUpdate(tweetLog);
-                    }
-                    maxId = long.Parse(tweetLogs.Min(x => x.StatusId));
                 }
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
             }
         }
 
@@ -44,10 +48,14 @@ namespace Karemem0.Preddy.Controllers {
         /// 新しいツイートの統計を取得してデータベースに保存します。
         /// </summary>
         public void InsertTweetSummary() {
-            using (var tweetSummaryService = new TweetResultService()) {
-                foreach (var tweetSummary in tweetSummaryService.Summarize()) {
-                    tweetSummaryService.AddOrUpdate(tweetSummary);
+            try {
+                using (var tweetSummaryService = new TweetResultService()) {
+                    foreach (var tweetSummary in tweetSummaryService.Summarize()) {
+                        tweetSummaryService.AddOrUpdate(tweetSummary);
+                    }
                 }
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
             }
         }
 
@@ -55,11 +63,15 @@ namespace Karemem0.Preddy.Controllers {
         /// ツイートの予測を取得してデータベースに保存します。
         /// </summary>
         public void InsertTweetForecast() {
-            using (var azuremlService = new AzureMachineLearningService())
-            using (var tweetForecastService = new TweetForecastService()) {
-                foreach (var tweetForecast in azuremlService.Search()) {
-                    tweetForecastService.AddOrUpdate(tweetForecast);
+            try {
+                using (var azuremlService = new AzureMachineLearningService())
+                using (var tweetForecastService = new TweetForecastService()) {
+                    foreach (var tweetForecast in azuremlService.Search()) {
+                        tweetForecastService.AddOrUpdate(tweetForecast);
+                    }
                 }
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
             }
         }
 
@@ -67,8 +79,12 @@ namespace Karemem0.Preddy.Controllers {
         /// 古いツイートのログを削除します。
         /// </summary>
         public void DeleteTweetLog() {
-            using (var tweetLogService = new TweetLogService()) {
-                tweetLogService.Shrink();
+            try {
+                using (var tweetLogService = new TweetLogService()) {
+                    tweetLogService.Shrink();
+                }
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
             }
         }
 
