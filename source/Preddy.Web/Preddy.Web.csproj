@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Karemem0.Preddy</RootNamespace>
     <AssemblyName>Karemem0.Preddy.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -103,11 +103,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\loading.gif" />
+    <Content Include="Contents\app.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="PrivacyPolicy.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
