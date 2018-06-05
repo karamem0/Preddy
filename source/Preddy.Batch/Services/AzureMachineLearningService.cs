@@ -45,10 +45,10 @@ namespace Karemem0.Preddy.Services {
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseString = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var responseJson = (JObject)JsonConvert.DeserializeObject(responseString);
-            return responseJson["Results"]["output1"]
+            return responseJson["Results"]["forecast"]["value"]["Values"]
                 .Select(item => new {
-                    Date = (DateTime)item["date"],
-                    Mean = (double)item["mean"]
+                    Date = (DateTime)item[0],
+                    Mean = (double)item[1]
                 })
                 .Select(item => new TweetForecast() {
                     Id = Guid.NewGuid(),
