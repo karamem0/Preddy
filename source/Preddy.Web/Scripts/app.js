@@ -54,7 +54,7 @@ var Chart = (function () {
                     hAxis: {
                         format: 'M/d',
                         gridlines: { count: json.items.length },
-                        slantedText: true,
+                        slantedText: true
                     },
                     vAxis: {}
                 };
@@ -141,8 +141,7 @@ google.setOnLoadCallback(function () {
     tweetChart.selectedDateChanged = tweetLog;
     ko.applyBindings({
         tweetLog: tweetLog,
-        tweetChart: tweetChart,
+        tweetChart: tweetChart
     });
     tweetChart.draw();
 });
-//# sourceMappingURL=app.js.map
