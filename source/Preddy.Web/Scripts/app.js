@@ -1,20 +1,19 @@
-/// <reference path="../Scripts/typings/jquery/jquery.d.ts" />
-/// <reference path="../Scripts/typings/bootstrap/index.d.ts" />
-/// <reference path="../Scripts/typings/knockout/knockout.d.ts" />
-/// <reference path="../Scripts/typings/google.visualization/google.visualization.d.ts" />
-/// <reference path="../Scripts/typings/twemoji/twemoji.d.ts" />
+/// <reference path="../Scripts/typings/index.d.ts" />
 'use strict';
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Chart = (function () {
+var Chart = /** @class */ (function () {
     function Chart(elementId) {
         var _this = this;
         this.element = document.getElementById(elementId);
@@ -54,7 +53,7 @@ var Chart = (function () {
                     hAxis: {
                         format: 'M/d',
                         gridlines: { count: json.items.length },
-                        slantedText: true
+                        slantedText: true,
                     },
                     vAxis: {}
                 };
@@ -78,7 +77,7 @@ var Chart = (function () {
     };
     return Chart;
 }());
-var TweetChart = (function (_super) {
+var TweetChart = /** @class */ (function (_super) {
     __extends(TweetChart, _super);
     function TweetChart() {
         var _this = _super.call(this, 'tweet-chart') || this;
@@ -92,7 +91,7 @@ var TweetChart = (function (_super) {
     }
     return TweetChart;
 }(Chart));
-var TweetLog = (function () {
+var TweetLog = /** @class */ (function () {
     function TweetLog() {
         var _this = this;
         this.dateFormatter = new google.visualization.DateFormat({ pattern: 'yyyy/MM/dd' });
@@ -141,7 +140,8 @@ google.setOnLoadCallback(function () {
     tweetChart.selectedDateChanged = tweetLog;
     ko.applyBindings({
         tweetLog: tweetLog,
-        tweetChart: tweetChart
+        tweetChart: tweetChart,
     });
     tweetChart.draw();
 });
+//# sourceMappingURL=app.js.map

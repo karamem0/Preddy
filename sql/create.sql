@@ -6,7 +6,7 @@ CREATE TABLE [dbo].[TweetLog] (
 	[Id] [uniqueidentifier] NOT NULL,
 	[StatusId] [nvarchar](40) NULL,
 	[UserId] [nvarchar](40) NULL,
-	[UserName] [nvarchar](40) NULL,
+	[UserName] [nvarchar](80) NULL,
 	[ScreenName] [nvarchar](40) NULL,
 	[ProfileImageUrl] [nvarchar](1024) NULL,
 	[MediaUrl] [nvarchar](1024) NULL,

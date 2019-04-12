@@ -38,7 +38,7 @@ namespace Karemem0.Preddy.Models {
         /// <summary>
         /// ユーザー名を取得または設定します。
         /// </summary>
-        [StringLength(40)]
+        [StringLength(80)]
         public virtual string UserName { get; set; }
 
         /// <summary>

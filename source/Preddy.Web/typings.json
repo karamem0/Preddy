@@ -1,0 +1,8 @@
+{
+  "globalDependencies": {
+    "bootstrap": "registry:dt/bootstrap#3.3.5+20160726204056",
+    "google.visualization": "registry:dt/google.visualization#0.0.0+20161110122126",
+    "jquery": "registry:dt/jquery#1.10.0+20170310222111",
+    "knockout": "registry:dt/knockout#3.4.0+20170311010955"
+  }
+}

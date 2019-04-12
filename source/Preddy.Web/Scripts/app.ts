@@ -1,8 +1,4 @@
-﻿/// <reference path="../Scripts/typings/jquery/jquery.d.ts" />
-/// <reference path="../Scripts/typings/bootstrap/index.d.ts" />
-/// <reference path="../Scripts/typings/knockout/knockout.d.ts" />
-/// <reference path="../Scripts/typings/google.visualization/google.visualization.d.ts" />
-/// <reference path="../Scripts/typings/twemoji/twemoji.d.ts" />
+﻿/// <reference path="../Scripts/typings/index.d.ts" />
 
 'use strict';
 
