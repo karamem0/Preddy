@@ -68,7 +68,7 @@ class Chart {
                 this.dataTable.addColumn('date', '日付');
                 this.dataTable.addColumn('number', '予測');
                 this.dataTable.addColumn('number', '結果');
-                jQuery.each(json.items, (index, element) => {
+                jQuery.each(json.items, (index: number, element: any) => {
                     this.dataTable.setValue(index, 0, new Date(element.date));
                     this.dataTable.setValue(index, 1, element.forecast);
                     this.dataTable.setValue(index, 2, element.result);
