@@ -60,7 +60,9 @@ class Chart {
                         gridlines: { count: json.items.length },
                         slantedText: true,
                     },
-                    vAxis: { }
+                    vAxis: {
+                        minValue: 0
+                    }
                 };
                 this.maxDate = new Date(json.maxDate);
                 this.minDate = new Date(json.minDate);
