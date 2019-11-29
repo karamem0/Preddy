@@ -51,7 +51,7 @@ namespace Karemem0.Preddy.Services {
                         Date = date.ToString("s"),
                         Forecast = tweetForecasts
                             .Where(item => item.Date == date)
-                            .Select(item => item.Count)
+                            .Select(item => item.Count < 0.0 ? 0.0 : item.Count)
                             .SingleOrDefault(),
                         Result = tweetResults
                             .Where(item => item.Date == date)
